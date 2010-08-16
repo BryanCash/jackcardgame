@@ -10,7 +10,6 @@ package com.googlecode.jackcardgame.tools;
  *
  * Created on 10 Αυγ 2010, 2:34:27 μμ
  */
-
 import com.googlecode.jackcardgame.cardgame.Main;
 import com.googlecode.jackcardgame.tools.Database;
 import com.googlecode.jackcardgame.tools.User;
@@ -27,14 +26,16 @@ public class SelectUser extends javax.swing.JDialog {
 
   DefaultComboBoxModel usersModel = new DefaultComboBoxModel(User.getUsers());
   public User user = null;
+  private boolean allowEntry;
 
   /** Creates new form SelectUser */
-  public SelectUser(java.awt.Frame parent, boolean modal) {
+  public SelectUser(java.awt.Frame parent, boolean modal, boolean allowEntry) {
     super(parent, modal);
+    this.allowEntry = allowEntry;
     initComponents();
     setLocationRelativeTo(null);
     setVisible(true);
-    
+
   }
 
   /** This method is called from within the constructor to
@@ -64,7 +65,7 @@ public class SelectUser extends javax.swing.JDialog {
     jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel1.setText("Select User");
 
-    cb_users.setEditable(true);
+    cb_users.setEditable(allowEntry);
     cb_users.setModel(usersModel);
 
     bt_ok.setText("OK");
@@ -117,20 +118,26 @@ public class SelectUser extends javax.swing.JDialog {
     Object si = cb_users.getSelectedItem();
     if (si instanceof User) {
       user = (User) si;
+      dispose();
     } else {
       if (si instanceof String) {
         String name = ((String) si).trim();
         if (!name.equals("")) {
+          User u = new User(-1, name);
           try {
-            Database.stmt.executeUpdate("INSERT INTO users (name) VALUES ('" + name + "')");
-            user = User.getUserByName(name);
+            u.save();
           } catch (SQLException ex) {
+             if(ex.getMessage().equals("column name is not unique")){
+             Functions.Error("Insert User", "This username already exists");
+             }
             Logger.getLogger(SelectUser.class.getName()).log(Level.SEVERE, null, ex);
           }
+          user = User.getUserByName(name);
+          dispose();
         }
       }
     }
-    dispose();
+    
   }//GEN-LAST:event_bt_okActionPerformed
 
   /**

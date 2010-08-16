@@ -55,7 +55,9 @@ public class Database {
     try {
       String sql = "CREATE TABLE users ("
           + "user_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE,"
-          + "name VARCHAR(40) unique"
+          + " name VARCHAR(40) unique,"
+          + " difficulty INTEGER default 0,"
+          + " deckname VARCHAR(40) default `default`"
           + ")";
       stmt.executeUpdate(sql);
       sql = "CREATE TABLE games ("
