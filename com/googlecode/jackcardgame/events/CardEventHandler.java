@@ -26,6 +26,7 @@ public class CardEventHandler implements CardEventListener {
   public static final int CPU_GET_CARD = 3;
   public static final int PLAY_CARD = 4;
   public static final int CPU_THINK = 5;
+  public static final int EXIT_APP = 6;
   public static int TOP_MARGIN = 10;
   public static int KSERI_TOP_MARGIN = 2;
   public static int KSERI_LEFT_MARGIN = 20;
@@ -34,6 +35,7 @@ public class CardEventHandler implements CardEventListener {
   public static int TAKEN_TOP_MARGIN = 2;
   public static int DECK_LEFT_MARGIN = 10;
   public static int DECK_TOP_MARGIN = 6;
+
   private Main main = null;
   private Container sourcePanel;
   private Container targetPanel;
@@ -179,6 +181,9 @@ public class CardEventHandler implements CardEventListener {
       case CPU_THINK:
         main.cpuPlay();
         main.setPlayersTurn(true);
+        break;
+      case EXIT_APP:
+        main.exit();
         break;
     }
     if (main.deck != null) {

@@ -84,11 +84,11 @@ public class Main extends javax.swing.JFrame {
 
   /** Creates new form Main */
   public Main() {
-    woodtile = new ImageIcon(getClass().getResource("/icons/woodtile.jpg")).getImage();
-    tsoxatile = new ImageIcon(getClass().getResource("/icons/tsoxatile.jpg")).getImage();
-    marbletile = new ImageIcon(getClass().getResource("/icons/marbletile.jpg")).getImage();
-    play = new ImageIcon(getClass().getResource("/icons/go.png"));
-    notPlay = new ImageIcon(getClass().getResource("/icons/stop.jpg"));
+    woodtile = new ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/woodtile.jpg")).getImage();
+    tsoxatile = new ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/tsoxatile.jpg")).getImage();
+    marbletile = new ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/marbletile.jpg")).getImage();
+    play = new ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/go.png"));
+    notPlay = new ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/stop.jpg"));
 
 
     initComponents();
@@ -105,11 +105,11 @@ public class Main extends javax.swing.JFrame {
     } catch (UnsupportedLookAndFeelException ex) {
       Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
     }
-    selectUser();
+    selectUser(true);
     label_remainingCards.setFont(label_remainingCards.getFont().deriveFont(Font.BOLD, label_remainingCards.getFont().getSize() + 5));
     label_remainingCards.setForeground(Color.WHITE);
     setPreferredSize(new Dimension(756, 587));
-    setIconImage(new ImageIcon(getClass().getResource("/icons/start-32x32.png")).getImage());
+    setIconImage(new ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/start-32x32.png")).getImage());
 
     //setSize(new Dimension(720, 572));
     setExtendedState(MAXIMIZED_BOTH);
@@ -143,7 +143,7 @@ public class Main extends javax.swing.JFrame {
     bt_deck = new javax.swing.JButton();
     bt_user = new javax.swing.JButton();
     tb_report = new javax.swing.JButton();
-    jButton1 = new javax.swing.JButton();
+    bt_exit = new javax.swing.JButton();
     mainPanel = new com.googlecode.jackcardgame.tools.JTiledPanel(tsoxatile);
     panel_cpuCards = new com.googlecode.jackcardgame.tools.JTiledPanel(tsoxatile);
     panel_playersCards = new com.googlecode.jackcardgame.tools.JTiledPanel(tsoxatile);
@@ -165,15 +165,20 @@ public class Main extends javax.swing.JFrame {
     jSeparator4 = new javax.swing.JSeparator();
     label_points = new javax.swing.JLabel();
 
-    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
     setTitle("Cards Game");
+    addWindowListener(new java.awt.event.WindowAdapter() {
+      public void windowClosing(java.awt.event.WindowEvent evt) {
+        formWindowClosing(evt);
+      }
+    });
 
     toolbar.setBackground(new java.awt.Color(255, 255, 255));
     toolbar.setFloatable(false);
     toolbar.setRollover(true);
     toolbar.setBorderPainted(false);
 
-    bt_newGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/start-32x32.png"))); // NOI18N
+    bt_newGame.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/start-32x32.png"))); // NOI18N
     bt_newGame.setToolTipText("New Game");
     bt_newGame.setFocusable(false);
     bt_newGame.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -186,7 +191,7 @@ public class Main extends javax.swing.JFrame {
     });
     toolbar.add(bt_newGame);
 
-    bt_stop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/stop.jpg"))); // NOI18N
+    bt_stop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/stop.jpg"))); // NOI18N
     bt_stop.setToolTipText("Stop Game");
     bt_stop.setFocusable(false);
     bt_stop.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -203,45 +208,46 @@ public class Main extends javax.swing.JFrame {
 
     tb_easiest.setBackground(new java.awt.Color(255, 255, 255));
     bg_dif.add(tb_easiest);
-    tb_easiest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/easiest_alpha.png"))); // NOI18N
+    tb_easiest.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/easiest_alpha.png"))); // NOI18N
     tb_easiest.setSelected(true);
     tb_easiest.setToolTipText("Easiest");
     tb_easiest.setFocusable(false);
     tb_easiest.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    tb_easiest.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/easiest.png"))); // NOI18N
-    tb_easiest.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/easiest.png"))); // NOI18N
+    tb_easiest.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/easiest.png"))); // NOI18N
+    tb_easiest.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/easiest.png"))); // NOI18N
     tb_easiest.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
     toolbar.add(tb_easiest);
 
     tb_easy.setBackground(new java.awt.Color(255, 255, 255));
     bg_dif.add(tb_easy);
-    tb_easy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/easy_alpha.png"))); // NOI18N
+    tb_easy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/easy_alpha.png"))); // NOI18N
     tb_easy.setToolTipText("Easy");
     tb_easy.setFocusable(false);
     tb_easy.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    tb_easy.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/easy.png"))); // NOI18N
-    tb_easy.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/easy.png"))); // NOI18N
+    tb_easy.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/easy.png"))); // NOI18N
+    tb_easy.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/easy.png"))); // NOI18N
     tb_easy.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
     toolbar.add(tb_easy);
 
+    tb_difficult.setBackground(new java.awt.Color(255, 255, 255));
     bg_dif.add(tb_difficult);
-    tb_difficult.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dif_alpha.png"))); // NOI18N
+    tb_difficult.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/dif_alpha.png"))); // NOI18N
     tb_difficult.setToolTipText("Difficult");
     tb_difficult.setFocusable(false);
     tb_difficult.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    tb_difficult.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dif.png"))); // NOI18N
-    tb_difficult.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dif.png"))); // NOI18N
+    tb_difficult.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/dif.png"))); // NOI18N
+    tb_difficult.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/dif.png"))); // NOI18N
     tb_difficult.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
     toolbar.add(tb_difficult);
 
     tb_hard.setBackground(new java.awt.Color(255, 255, 255));
     bg_dif.add(tb_hard);
-    tb_hard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hard_alpha.png"))); // NOI18N
+    tb_hard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/hard_alpha.png"))); // NOI18N
     tb_hard.setToolTipText("Hard");
     tb_hard.setFocusable(false);
     tb_hard.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    tb_hard.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hard.png"))); // NOI18N
-    tb_hard.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hard.png"))); // NOI18N
+    tb_hard.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/hard.png"))); // NOI18N
+    tb_hard.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/hard.png"))); // NOI18N
     tb_hard.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
     toolbar.add(tb_hard);
 
@@ -249,12 +255,12 @@ public class Main extends javax.swing.JFrame {
     toolbar.add(jSeparator3);
 
     tb_cheat.setBackground(new java.awt.Color(255, 255, 255));
-    tb_cheat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cheat_alpha.png"))); // NOI18N
+    tb_cheat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/cheat_alpha.png"))); // NOI18N
     tb_cheat.setToolTipText("Cheat");
     tb_cheat.setFocusable(false);
     tb_cheat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    tb_cheat.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cheat.png"))); // NOI18N
-    tb_cheat.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/cheat.png"))); // NOI18N
+    tb_cheat.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/cheat.png"))); // NOI18N
+    tb_cheat.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/cheat.png"))); // NOI18N
     tb_cheat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
     tb_cheat.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -263,19 +269,19 @@ public class Main extends javax.swing.JFrame {
     });
     toolbar.add(tb_cheat);
 
-    tb_genious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/idea_alpha.png"))); // NOI18N
+    tb_genious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/idea_alpha.png"))); // NOI18N
     tb_genious.setToolTipText("Be a genious");
     tb_genious.setFocusable(false);
     tb_genious.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    tb_genious.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/idea.png"))); // NOI18N
-    tb_genious.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/idea.png"))); // NOI18N
+    tb_genious.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/idea.png"))); // NOI18N
+    tb_genious.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/idea.png"))); // NOI18N
     tb_genious.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
     toolbar.add(tb_genious);
 
     jSeparator2.setSeparatorSize(new java.awt.Dimension(20, 40));
     toolbar.add(jSeparator2);
 
-    bt_deck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/deck.png"))); // NOI18N
+    bt_deck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/deck.png"))); // NOI18N
     bt_deck.setToolTipText("Select Deck");
     bt_deck.setFocusable(false);
     bt_deck.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -288,7 +294,7 @@ public class Main extends javax.swing.JFrame {
     });
     toolbar.add(bt_deck);
 
-    bt_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
+    bt_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/user.png"))); // NOI18N
     bt_user.setToolTipText("Change user");
     bt_user.setFocusable(false);
     bt_user.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -301,7 +307,7 @@ public class Main extends javax.swing.JFrame {
     });
     toolbar.add(bt_user);
 
-    tb_report.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/report.png"))); // NOI18N
+    tb_report.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/report.png"))); // NOI18N
     tb_report.setToolTipText("Statistics");
     tb_report.setFocusable(false);
     tb_report.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -314,18 +320,18 @@ public class Main extends javax.swing.JFrame {
     });
     toolbar.add(tb_report);
 
-    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/exit.png"))); // NOI18N
-    jButton1.setToolTipText("Exit");
-    jButton1.setFocusable(false);
-    jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButton1.setOpaque(false);
-    jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
+    bt_exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/exit.png"))); // NOI18N
+    bt_exit.setToolTipText("Exit");
+    bt_exit.setFocusable(false);
+    bt_exit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+    bt_exit.setOpaque(false);
+    bt_exit.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+    bt_exit.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
+        bt_exitActionPerformed(evt);
       }
     });
-    toolbar.add(jButton1);
+    toolbar.add(bt_exit);
 
     getContentPane().add(toolbar, java.awt.BorderLayout.PAGE_START);
 
@@ -377,7 +383,7 @@ public class Main extends javax.swing.JFrame {
     label_turn.setBackground(new java.awt.Color(255, 255, 255));
     label_turn.setFont(label_turn.getFont().deriveFont(label_turn.getFont().getStyle() | java.awt.Font.BOLD, label_turn.getFont().getSize()+4));
     label_turn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    label_turn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/stop.jpg"))); // NOI18N
+    label_turn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/stop.jpg"))); // NOI18N
     label_turn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
     label_turn.setOpaque(true);
 
@@ -400,15 +406,12 @@ public class Main extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(label_turn, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(panel_playedCards, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+              .addComponent(panel_playedCards, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)))
           .addGroup(mainPanelLayout.createSequentialGroup()
             .addComponent(panel_playersCards, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addGroup(mainPanelLayout.createSequentialGroup()
-                .addComponent(label_playerPoints, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+              .addComponent(label_playerPoints, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
               .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(panel_playersWonCards, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
                 .addGap(2, 2, 2)))))
@@ -455,49 +458,49 @@ public class Main extends javax.swing.JFrame {
 
     label_games.setFont(label_games.getFont().deriveFont(label_games.getFont().getStyle() | java.awt.Font.BOLD, label_games.getFont().getSize()+5));
     label_games.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    label_games.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/start-32x32.png"))); // NOI18N
+    label_games.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/start-32x32.png"))); // NOI18N
     label_games.setText("0");
     label_games.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
     label_games.setIconTextGap(50);
 
     label_won.setFont(label_won.getFont().deriveFont(label_won.getFont().getStyle() | java.awt.Font.BOLD, label_won.getFont().getSize()+5));
     label_won.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    label_won.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/easy.png"))); // NOI18N
+    label_won.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/easy.png"))); // NOI18N
     label_won.setText("0");
     label_won.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
     label_won.setIconTextGap(50);
 
     label_draw.setFont(label_draw.getFont().deriveFont(label_draw.getFont().getStyle() | java.awt.Font.BOLD, label_draw.getFont().getSize()+5));
     label_draw.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    label_draw.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/dif.png"))); // NOI18N
+    label_draw.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/dif.png"))); // NOI18N
     label_draw.setText("0");
     label_draw.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
     label_draw.setIconTextGap(50);
 
     label_lost.setFont(label_lost.getFont().deriveFont(label_lost.getFont().getStyle() | java.awt.Font.BOLD, label_lost.getFont().getSize()+5));
     label_lost.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    label_lost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hard.png"))); // NOI18N
+    label_lost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/hard.png"))); // NOI18N
     label_lost.setText("0");
     label_lost.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
     label_lost.setIconTextGap(50);
 
     label_bigwin.setFont(label_bigwin.getFont().deriveFont(label_bigwin.getFont().getStyle() | java.awt.Font.BOLD, label_bigwin.getFont().getSize()+5));
     label_bigwin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    label_bigwin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/easiest.png"))); // NOI18N
+    label_bigwin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/easiest.png"))); // NOI18N
     label_bigwin.setText("0");
     label_bigwin.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
     label_bigwin.setIconTextGap(50);
 
     label_biglost.setFont(label_biglost.getFont().deriveFont(label_biglost.getFont().getStyle() | java.awt.Font.BOLD, label_biglost.getFont().getSize()+5));
     label_biglost.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    label_biglost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hard.png"))); // NOI18N
+    label_biglost.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/hard.png"))); // NOI18N
     label_biglost.setText("0");
     label_biglost.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
     label_biglost.setIconTextGap(50);
 
     label_points.setFont(label_points.getFont().deriveFont(label_points.getFont().getStyle() | java.awt.Font.BOLD, label_points.getFont().getSize()+5));
     label_points.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-    label_points.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/report.png"))); // NOI18N
+    label_points.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/report.png"))); // NOI18N
     label_points.setText("0");
     label_points.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
     label_points.setIconTextGap(50);
@@ -557,23 +560,29 @@ public class Main extends javax.swing.JFrame {
       cheat(tb_cheat.isSelected());
     }//GEN-LAST:event_tb_cheatActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bt_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_exitActionPerformed
       if (Functions.confirm("Exit", "Really Exit?") == JOptionPane.YES_OPTION) {
-        dispose();
+        exit();
       }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_bt_exitActionPerformed
 
     private void bt_deckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_deckActionPerformed
       String tmpDeck = deckName;
       new ChooseDeck(this, true);
       if (Deck.isValidDeck(deckName)) {
-        Card card = (Card) panel_remainingCards.getComponent(0);
-        card.setShown(false);
+        setDeck(deckName);
       } else {
-        deckName = tmpDeck;
+        setDeck(tmpDeck);
       }
-
     }//GEN-LAST:event_bt_deckActionPerformed
+
+  private void setDeck(String deck) {
+    Main.deckName = deck;
+    if (panel_remainingCards.getComponentCount() > 0) {
+      Card card = (Card) panel_remainingCards.getComponent(0);
+      card.setShown(false);
+    }
+  }
 
     private void bt_stopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_stopActionPerformed
       if (isGame) {
@@ -585,12 +594,17 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_bt_stopActionPerformed
 
     private void bt_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_userActionPerformed
-      selectUser();
+      selectUser(false);
     }//GEN-LAST:event_bt_userActionPerformed
 
     private void tb_reportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tb_reportActionPerformed
       new Statistics(this, true);
     }//GEN-LAST:event_tb_reportActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+      CardEvent ce = new CardEvent(this, null, CardEventHandler.EXIT_APP);
+      evClass.fireMyEvent(ce);
+    }//GEN-LAST:event_formWindowClosing
 
   private void cheat(boolean cheat) {
     ArrayList<Card> cards = cpuHand.getAllCards();
@@ -894,15 +908,40 @@ public class Main extends javax.swing.JFrame {
     label_playerPoints.setText("0");
   }
 
-  private void selectUser() {
-    SelectUser su = new SelectUser(this, true);
+  private void selectUser(boolean allowEntry) {
+    SelectUser su = new SelectUser(this, true,allowEntry);
     user = su.user;
     updateUserStats();
-
+    setDeck(user.deckname);
+    setDifficulty(user.difficulty);
   }
 
   private int getPerc(int a, int b) {
     return (int) (((double) a / b) * 100);
+  }
+
+  public void exit() {
+    user.difficulty = getDifficulty();
+    user.deckname = deckName;
+    try {
+      user.save();
+    } catch (SQLException ex) {
+      Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+      System.exit(0);
+    }
+  }
+
+  private void setDifficulty(int difficulty) {
+    if (difficulty == EASIEST) {
+      tb_easiest.setSelected(true);
+    } else if (difficulty == EASY) {
+      tb_easy.setSelected(true);
+    } else if (difficulty == DIFFICULT) {
+      tb_difficult.setSelected(true);
+    } else if (difficulty == HARD) {
+      tb_hard.setSelected(true);
+    }
   }
 
   class ScoreComputer implements Runnable {
@@ -1019,10 +1058,10 @@ public class Main extends javax.swing.JFrame {
   public com.googlecode.jackcardgame.tools.JTiledPanel EAST;
   public javax.swing.ButtonGroup bg_dif;
   public javax.swing.JButton bt_deck;
+  public javax.swing.JButton bt_exit;
   public javax.swing.JButton bt_newGame;
   public javax.swing.JButton bt_stop;
   public javax.swing.JButton bt_user;
-  public javax.swing.JButton jButton1;
   public javax.swing.JToolBar.Separator jSeparator1;
   public javax.swing.JToolBar.Separator jSeparator2;
   public javax.swing.JToolBar.Separator jSeparator3;

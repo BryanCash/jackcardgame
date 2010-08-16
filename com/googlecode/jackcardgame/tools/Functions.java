@@ -30,6 +30,10 @@ public class Functions {
     } while ((t1 - t0) < (ms));
   }
 
+  public static void Error(String title, String message) {
+    JOptionPane.showMessageDialog(null, message,title,JOptionPane.ERROR_MESSAGE);
+  }
+
   public static String getToday() {
     Date d = Calendar.getInstance().getTime();
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
