@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rename_preset case="none" script="yes" type="findrep" typeval="0">
+	<from>.DS_Store</from>
+	<to />
+	<script>@script vbscript
+Option Explicit
+Dim rank, suit, suitname
+Function Rename_GetNewName ( strFileName, strFilePath, _
+		fIsFolder, strOldName, ByRef strNewName )
+	suit = CLng(mid(strFileName,1,2))
+	if(suit  &lt;13) then
+		suitname = &quot;diamonds&quot;
+		rank = suit+2
+		if(rank=14) then
+		rank=1
+		end if
+	elseif(suit &lt; 26) then
+	suitname = &quot;hearts&quot;
+	rank = suit-11
+		if(rank=14) then
+		rank=1
+		end if
+	elseif(suit&lt;39) then
+	suitname = &quot;spades&quot;
+	rank = suit-24
+		if(rank=14) then
+		rank=1
+		end if
+	elseif(suit&lt;52) then
+	suitname = &quot;clubs&quot;
+	rank = suit-37
+		if(rank=14) then
+		rank=1
+		end if
+	End if
+	strNewName = suitname&amp;&quot;-&quot;&amp;rank&amp;&quot;.png&quot;
+End Function
+</script>
+</rename_preset>

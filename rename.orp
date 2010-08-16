@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<rename_preset case="none" script="yes" type="findrep" typeval="0">
+	<from>01d.gif</from>
+	<to>01c.gif</to>
+	<script>@script vbscript
+Option Explicit
+Dim rank, suit, suitname
+Function Rename_GetNewName ( strFileName, strFilePath, _
+		fIsFolder, strOldName, ByRef strNewName )
+	rank = mid(strFileName,1,2)
+	if(mid(rank,1,1)=&quot;0&quot;) then
+	rank = mid(rank,2,1)
+	end if
+	suit = mid(strFileName,3,1)
+	if(suit = &quot;h&quot;) then
+		suitname = &quot;hearts&quot;
+	elseif(suit=&quot;c&quot;) then
+	suitname = &quot;clubs&quot;
+	elseif(suit=&quot;s&quot;) then
+	suitname = &quot;spades&quot;
+	elseif(suit=&quot;d&quot;) then
+	suitname = &quot;diamonds&quot;
+	End if
+	strNewName = suitname+&quot;-&quot;+rank+&quot;.gif&quot;
+End Function
+</script>
+</rename_preset>
