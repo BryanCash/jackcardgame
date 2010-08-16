@@ -4,6 +4,7 @@
  */
 package com.googlecode.jackcardgame.cardgame.cards;
 
+import com.googlecode.jackcardgame.tools.Functions;
 import java.io.File;
 
 /**
@@ -118,14 +119,14 @@ public class Deck implements CardConstants {
         Card card = new Card(j, i);
         String name = card.getSuitName().toLowerCase() + "-" + j + ".png";
         if (!new File(DECK_PATH + "/" + deckname + "/" + name).exists()) {
-          com.googlecode.jackcardgame.functions.Functions.Error("Choose Deck", "The card's \"" + card + "\" image is missing from the deck");
+          Functions.Error("Choose Deck", "The card's \"" + card + "\" image is missing from the deck");
           return false;
         }
       }
     }
 
     if (!new File(DECK_PATH + "/" + deckname + "/back.png").exists()) {
-      com.googlecode.jackcardgame.functions.Functions.Error("Choose Deck", "The deck's back image is missing");
+      Functions.Error("Choose Deck", "The deck's back image is missing");
       return false;
     }
     return true;
