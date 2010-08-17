@@ -14,17 +14,11 @@ import java.io.File;
  */
 public class Deck implements CardConstants {
 
-  public static final String DEFAULT = "default";
-  public static final String DOO = "doo";
-  public static final String FANTASY = "fantasy";
-  public static final String HANDAPORT = "handaport";
-  public static final String NUNAM = "nunam";
-  public static final String TUXEDO = "tuxedo";
   public static int TOTAL_CARDS = 52;
   public static int NUMBER_OF_SUITES = 4;
   public static int NUMBER_OF_RANKS = 13;
   public static String DECK_PATH = "./decks";
-  public static final String[] DECKS = {DEFAULT, DOO, FANTASY, HANDAPORT, NUNAM, TUXEDO};
+  public static final String DEFAULT = "default";
   /**
    * An array of 52 or 54 cards.  A 54-card deck contains two Jokers,
    * in addtion to the 52 cards of a regular poker deck.
