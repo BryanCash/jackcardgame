@@ -17,7 +17,6 @@ import com.googlecode.jackcardgame.cardgame.cards.Deck;
 import com.googlecode.jackcardgame.cardgame.cards.PlayedCards;
 import com.googlecode.jackcardgame.cardgame.cards.PlayerHand;
 import com.googlecode.jackcardgame.cardgame.cards.PlayerWonCards;
-import com.googlecode.jackcardgame.com.googlecode.jackcardgame.tools.EndGame;
 import com.googlecode.jackcardgame.events.CardEvent;
 import com.googlecode.jackcardgame.events.CardEventHandler;
 import com.googlecode.jackcardgame.events.CardEventsClass;
@@ -44,6 +43,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import com.googlecode.jackcardgame.tools.ChooseDeck;
 import com.googlecode.jackcardgame.tools.Database;
+import com.googlecode.jackcardgame.tools.EndGame;
 import com.googlecode.jackcardgame.tools.SelectUser;
 import com.googlecode.jackcardgame.tools.Statistics;
 import com.googlecode.jackcardgame.tools.User;
@@ -354,7 +354,7 @@ public class Main extends javax.swing.JFrame {
     panel_cpuWonCards.setLayout(panel_cpuWonCardsLayout);
     panel_cpuWonCardsLayout.setHorizontalGroup(
       panel_cpuWonCardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 283, Short.MAX_VALUE)
+      .addGap(0, 222, Short.MAX_VALUE)
     );
     panel_cpuWonCardsLayout.setVerticalGroup(
       panel_cpuWonCardsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,24 +398,25 @@ public class Main extends javax.swing.JFrame {
             .addComponent(panel_cpuCards, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(label_cpuPoints, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-              .addComponent(panel_cpuWonCards, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
-            .addGap(2, 2, 2))
+              .addGroup(mainPanelLayout.createSequentialGroup()
+                .addComponent(label_cpuPoints, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                .addGap(2, 2, 2))
+              .addComponent(panel_cpuWonCards, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)))
           .addGroup(mainPanelLayout.createSequentialGroup()
             .addComponent(panel_remainingCards, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(label_turn, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-              .addComponent(panel_playedCards, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)))
+              .addComponent(panel_playedCards, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)))
           .addGroup(mainPanelLayout.createSequentialGroup()
             .addComponent(panel_playersCards, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-              .addComponent(label_playerPoints, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+              .addComponent(label_playerPoints, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
               .addGroup(mainPanelLayout.createSequentialGroup()
-                .addComponent(panel_playersWonCards, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                .addComponent(panel_playersWonCards, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
                 .addGap(2, 2, 2)))))
-        .addGap(2, 2, 2))
+        .addContainerGap())
     );
     mainPanelLayout.setVerticalGroup(
       mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -450,7 +451,7 @@ public class Main extends javax.swing.JFrame {
 
     getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
 
-    EAST.setPreferredSize(new java.awt.Dimension(200, 549));
+    EAST.setPreferredSize(new java.awt.Dimension(200, 10));
 
     label_name.setFont(label_name.getFont().deriveFont(label_name.getFont().getStyle() | java.awt.Font.BOLD, label_name.getFont().getSize()+5));
     label_name.setForeground(new java.awt.Color(255, 255, 255));
@@ -549,7 +550,8 @@ public class Main extends javax.swing.JFrame {
 
     getContentPane().add(EAST, java.awt.BorderLayout.EAST);
 
-    pack();
+    java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+    setBounds((screenSize.width-990)/2, (screenSize.height-580)/2, 990, 580);
   }// </editor-fold>//GEN-END:initComponents
 
     private void bt_newGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_newGameActionPerformed

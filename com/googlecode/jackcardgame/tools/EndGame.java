@@ -8,7 +8,7 @@
  *
  * Created on 11 Αυγ 2010, 7:09:42 μμ
  */
-package com.googlecode.jackcardgame.com.googlecode.jackcardgame.tools;
+package com.googlecode.jackcardgame.tools;
 
 import com.googlecode.jackcardgame.cardgame.Main;
 import java.awt.Cursor;
@@ -30,7 +30,7 @@ public class EndGame extends javax.swing.JDialog {
   public EndGame(java.awt.Frame parent, boolean modal, String type) {
     super(parent, modal);
     this.type = type;
-    icon = new ImageIcon(getClass().getResource("/icons/" + type + ".png"));
+    icon = new ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/" + type + ".png"));
     initComponents();
     jLabel1.setCursor(new Cursor(Cursor.HAND_CURSOR));
     //setSize(100, 140);
