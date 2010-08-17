@@ -11,7 +11,6 @@ package com.googlecode.jackcardgame.tools;
  * Created on 10 Αυγ 2010, 2:34:27 μμ
  */
 import com.googlecode.jackcardgame.cardgame.Main;
-import com.googlecode.jackcardgame.tools.Database;
 import com.googlecode.jackcardgame.tools.User;
 import java.sql.SQLException;
 import java.util.logging.Level;

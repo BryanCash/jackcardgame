@@ -172,7 +172,7 @@ public class Statistics extends javax.swing.JDialog {
 
     close.setBackground(new java.awt.Color(255, 255, 255));
     close.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/close.png"))); // NOI18N
+    close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/googlecode/jackcardgame/icons/close.png"))); // NOI18N
     close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     close.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseReleased(java.awt.event.MouseEvent evt) {
