@@ -62,7 +62,7 @@ public class SelectUser extends javax.swing.JDialog {
     jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, jLabel1.getFont().getSize()+2));
     jLabel1.setForeground(new java.awt.Color(255, 255, 255));
     jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel1.setText("Select User");
+    jLabel1.setText("Select or Create a User");
 
     cb_users.setEditable(allowEntry);
     cb_users.setModel(usersModel);
@@ -133,7 +133,11 @@ public class SelectUser extends javax.swing.JDialog {
           }
           user = User.getUserByName(name);
           dispose();
+        } else {
+          Functions.Error("Create User", "Please Select or Create a user");
         }
+      } else if (si == null) {
+        Functions.Error("Create User", "Please Select or Create a user");
       }
     }
     

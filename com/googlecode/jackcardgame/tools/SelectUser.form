@@ -94,7 +94,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Select User"/>
+            <Property name="text" type="java.lang.String" value="Select or Create a User"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cb_users">
